@@ -32,6 +32,7 @@ public class FlightController {
 
 @PostMapping("/")
     public List <Flight> createFlights(){
+
     List <Flight> flights = new ArrayList<>();
     for(int i=0; i<50; i++){
         Flight flight = new Flight();
@@ -40,8 +41,8 @@ public class FlightController {
         flight.setToAirport(generatedString);
         flight.setStatus(Status.ONTIME);
         flights.add(flight);
-        flightRepository.saveAndFlush(flight);
     }
+    flightRepository.saveAllAndFlush(flights);
     return flights;
 }
 
