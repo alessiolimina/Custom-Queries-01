@@ -25,20 +25,27 @@ public class FlightController {
     int targetStringLength = 15;
     Random random = new Random();
 
-    String generatedString = random.ints(leftLimit, rightLimit + 1)
-            .limit(targetStringLength)
-            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-            .toString();
-
 @PostMapping("/")
     public List <Flight> createFlights(){
 
     List <Flight> flights = new ArrayList<>();
     for(int i=0; i<50; i++){
         Flight flight = new Flight();
-        flight.setDescription(generatedString);
-        flight.setFromAirport(generatedString);
-        flight.setToAirport(generatedString);
+        String generatedString1 = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        String generatedString2 = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        String generatedString3 = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+        flight.setDescription(generatedString1);
+        flight.setFromAirport(generatedString2);
+        flight.setToAirport(generatedString3);
         flight.setStatus(Status.ONTIME);
         flights.add(flight);
     }
@@ -53,3 +60,4 @@ public class FlightController {
     return flightList;
     }
 }
+//Documentazione Postman: https://documenter.getpostman.com/view/26121086/2s93eYTrtd
